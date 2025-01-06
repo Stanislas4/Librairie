@@ -1,0 +1,28 @@
+<div class="task-manager">
+  <h2>Task Manager</h2>
+  <div class="input-group">
+    <input [(ngModel)]="newTask" placeholder="Add a new task" />
+    <button (click)="addTask()">Add Task</button>
+  </div>
+  @for (task of tasks; track tasks; let i = $index) {
+    <ul>
+      <li>
+        <strong>{{ task.nameTask }}</strong>
+        <button (click)="removeTask(i)">Supprimer</button>
+        <div>
+          <input [(ngModel)]="newSubTask" placeholder="Ajouter une sous-tâche" />
+          <button (click)="addSubTask(i)">Ajouter une sous-tâche</button>
+        </div>
+        @for (subTask of task.subTask; track tasks; let j = $index) {
+          <ul>
+            <li>
+              {{ subTask.subTaskName }}
+              {{ subTask.createdAt | date: 'short' }}
+              <button (click)="removeSubTask(i, j)">Supprimer</button>
+            </li>
+          </ul>
+        }
+      </li>
+    </ul>
+  }
+</div>

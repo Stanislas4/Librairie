@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { LivreComponent } from './livre/livre.component'; // If you want to use LivreComponent
+import { TaskListComponent } from "./task-list/task-list.component"; // If you want to use LivreComponent
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [LivreComponent], // Import LivreComponent and services
+  imports: [TaskListComponent], // Import LivreComponent and services
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
