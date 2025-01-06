@@ -20,7 +20,11 @@ export class TaskListComponent {
   }
 
   addTask() {
-    const taskExists = this.tasks.some(task => task.nameTask === this.newTask.trim());
+    if (!this.newTask.trim()) {
+      alert('Task name cannot be empty');
+      return;
+    }
+    const taskExists = this.tasks.some(task => task.nameTask.toLowerCase === this.newTask.trim().toLowerCase);
     if (!taskExists) {
       this.taskService.addTask(this.newTask.trim());
       this.tasks = this.taskService.getTasks();
@@ -31,8 +35,11 @@ export class TaskListComponent {
   }
 
   addSubTask(taskIndex: number) {
-    const subTaskExists = this.tasks[taskIndex].subTask.some(subTask => subTask.subTaskName === this.newSubTask.trim());
-    console.log(subTaskExists);
+    const subTaskExists = this.tasks[taskIndex].subTask.some(subTask => subTask.subTaskName.toLowerCase === this.newSubTask.trim().toLowerCase);
+    if (!this.newSubTask.trim()) {
+      alert('SubTask name cannot be empty');
+      return;
+    }
     if (!subTaskExists) {
       this.taskService.addSubTask(taskIndex, this.newSubTask.trim());
       this.tasks = this.taskService.getTasks();
